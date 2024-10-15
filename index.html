@@ -96,7 +96,7 @@
                         </div>
                         <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/OIP1.jpg" alt="">
-                            <button class="movie-list-item-button" data-link="http://188.210.209.2/EDI/Movies/Barbie.2023.1080p.WEBRip.x264.AAC5.1-%5BYTS.MX%5D.mp4">Watch</button>
+                            <button class="movie-list-item-button" data-link="videos/Barbie.2023.1080p.WEBRip.x264.AAC5.1.mp4">Watch</button>
                         </div>
                         <!-- Repeat for other movies -->
                     </div>
@@ -127,15 +127,17 @@
         btns.forEach(btn => {
             btn.onclick = function () {
                 const movieLink = this.getAttribute('data-link');
-                movieSource.src = movieLink; // Set the src of video
+                movieSource.src = movieLink; // Set the video source
                 modal.style.display = "block"; // Show modal
                 document.getElementById("movie-player").load(); // Load video
+                document.getElementById("movie-player").play(); // Optionally play the video immediately
             }
         });
 
         span.onclick = function () {
             modal.style.display = "none"; // Close modal when x is clicked
             movieSource.src = ""; // Clear the video source when closing
+            document.getElementById("movie-player").pause(); // Pause the video when closing
         }
 
         // Close modal when user clicks outside of it
@@ -143,6 +145,7 @@
             if (event.target == modal) {
                 modal.style.display = "none";
                 movieSource.src = ""; // Clear video source
+                document.getElementById("movie-player").pause(); // Pause the video
             }
         }
     </script>
